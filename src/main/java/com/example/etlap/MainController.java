@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class MainController {
+public class MainController{
     @FXML
     public ListView kategoriaList;
     @FXML
@@ -41,21 +41,22 @@ public class MainController {
             hibaKiir(e);
         }
     }
+    @FXML
     public void onEtelFelveteleButtonClick(ActionEvent actionEvent) {
     }
-
+    @FXML
     public void onEtlapTorlesButtonClick(ActionEvent actionEvent) {
     }
-
+    @FXML
     public void onSzazalekEmelesButtonClick(ActionEvent actionEvent) {
     }
-
+    @FXML
     public void onFtEmelesButtonClick(ActionEvent actionEvent) {
     }
-
+    @FXML
     public void onKategoriaHozzaadButtonClick(ActionEvent actionEvent) {
     }
-
+    @FXML
     public void onKategoriaTorlesButtonClick(ActionEvent actionEvent) {
     }
     private void etelListaFeltolt(){
