@@ -33,10 +33,14 @@
                                 </rowConstraints>
                                 <children>
                                     <Spinner fx:id="szazalekEmelesInput">
-                                        <!-- TODO: valuefactory -->
+                                        <valueFactory>
+                                            <SpinnerValueFactory.IntegerSpinnerValueFactory amountToStepBy="5" max="50" min="5" />
+                                        </valueFactory>
                                     </Spinner>
                                     <Spinner fx:id="ftEmelesInput" GridPane.rowIndex="1">
-                                        <!-- TODO: valuefactory -->
+                                        <valueFactory>
+                                            <SpinnerValueFactory.IntegerSpinnerValueFactory amountToStepBy="50"  max="3000" min="50" />
+                                        </valueFactory>
                                     </Spinner>
                                     <Label text="\%" GridPane.columnIndex="1" />
                                     <Label text="Ft" GridPane.columnIndex="1" GridPane.rowIndex="1" />
