@@ -42,6 +42,10 @@ public class Etel {
     public void setAr(int ar) {
         this.ar = ar;
     }
+    public void setArSzazalek(int szazalek) {
+        System.out.println(szazalek);
+        this.ar =this.ar+ (Integer) (this.ar*szazalek/100);
+    }
 
     public int getId() {
         return id;

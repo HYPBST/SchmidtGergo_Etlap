@@ -6,7 +6,7 @@ import javafx.scene.control.Spinner;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
-public class EtlapHozzaadController {
+public class EtlapHozzaadController extends Controller {
     public TextField nevInput;
     public TextArea leirasInput;
     public ChoiceBox kategoriaInput;

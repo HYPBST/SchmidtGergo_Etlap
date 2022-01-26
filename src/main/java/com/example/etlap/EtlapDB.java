@@ -48,10 +48,10 @@ public class EtlapDB {
 
     public boolean etelModositasa(Etel modositando) throws SQLException {
         String sql = "UPDATE etlap SET " +
-                "cim = ?," +
-                "kategoria = ?," +
-                "hossz = ?," +
-                "ertekeles = ? " +
+                "nev = ?," +
+                "leiras = ?," +
+                "ar = ?," +
+                "kategoria = ? " +
                 "WHERE id = ?";
         PreparedStatement stmt = conn.prepareStatement(sql);
         stmt.setString(1, modositando.getNev());
@@ -62,4 +62,5 @@ public class EtlapDB {
         int erintettSorok = stmt.executeUpdate();
         return erintettSorok == 1;
     }
+
 }
