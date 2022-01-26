@@ -45,6 +45,17 @@ public class EtlapDB {
         int erintettSorok = stmt.executeUpdate();
         return erintettSorok == 1;
     }
+    public List<String> getKategoriak() throws SQLException{
+        List<String> kategoriak=new ArrayList<>();
+        Statement stmt = conn.createStatement();
+        String sql = "SELECT kategoria FROM etlap GROUP BY kategoria;";
+        ResultSet result = stmt.executeQuery(sql);
+        while (result.next()) {
+            String kategoria = result.getString("kategoria");
+            kategoriak.add(kategoria);
+        }
+        return kategoriak;
+    }
 
     public boolean etelModositasa(Etel modositando) throws SQLException {
         String sql = "UPDATE etlap SET " +

@@ -43,6 +43,13 @@ public class MainController extends Controller{
         } catch (SQLException e) {
             hibaKiir(e);
         }
+        try {
+            for (String k:db.getKategoriak()){
+                System.out.println(k);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
     @FXML
     public void onEtelFelveteleButtonClick(ActionEvent actionEvent) {
@@ -110,7 +117,7 @@ public class MainController extends Controller{
             hibaKiir(e);
         }
     }
-
+    @FXML
     public void onItemSelect() {
         if(etlapTable.getSelectionModel().getSelectedIndex()!=-1) {
             Etel kivalasztott = (Etel) etlapTable.getSelectionModel().getSelectedItem();

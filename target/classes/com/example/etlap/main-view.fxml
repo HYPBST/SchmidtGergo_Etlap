@@ -39,7 +39,7 @@
                                     </Spinner>
                                     <Spinner fx:id="ftEmelesInput" GridPane.rowIndex="1">
                                         <valueFactory>
-                                            <SpinnerValueFactory.IntegerSpinnerValueFactory amountToStepBy="50"  max="3000" min="50" />
+                                            <SpinnerValueFactory.IntegerSpinnerValueFactory amountToStepBy="50" max="3000" min="50" />
                                         </valueFactory>
                                     </Spinner>
                                     <Label text="\%" GridPane.columnIndex="1" />
@@ -51,7 +51,7 @@
                         </content>
                     </TitledPane>
                     <!-- TODO: kategória szűrés controll elemei -->
-                    <TableView fx:id="etlapTable" prefHeight="200.0" prefWidth="400.0" VBox.vgrow="ALWAYS">
+                    <TableView fx:id="etlapTable" onMouseClicked="#onItemSelect" prefHeight="200.0" prefWidth="400.0" VBox.vgrow="ALWAYS">
                         <columns>
                             <TableColumn fx:id="colNev" prefWidth="200.0" text="Név" />
                             <TableColumn fx:id="colKategoria" prefWidth="100.0" text="Kategória" />

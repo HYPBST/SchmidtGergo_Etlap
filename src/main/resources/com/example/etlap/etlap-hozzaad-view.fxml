@@ -43,18 +43,11 @@
         <TextField fx:id="nevInput" GridPane.columnIndex="1"/>
         <TextArea fx:id="leirasInput" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1"
                   GridPane.rowIndex="1"/>
-        <ChoiceBox fx:id="kategoriaInput" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
-            <items>
-                <FXCollections fx:factory="observableArrayList">
-                    <String fx:value="Előétel" />
-                    <String fx:value="Főétel" />
-                    <String fx:value="Desszert" />
-                </FXCollections>
-            </items>
-        </ChoiceBox>
+        <ComboBox fx:id="kategoriaInput" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+        </ComboBox>
         <Spinner fx:id="arInput" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
             <valueFactory>
-                <SpinnerValueFactory.IntegerSpinnerValueFactory amountToStepBy="1"/>
+                <SpinnerValueFactory.IntegerSpinnerValueFactory amountToStepBy="10" min="0" max="99999"/>
             </valueFactory>
         </Spinner>
     </children>
