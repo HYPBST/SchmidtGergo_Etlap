@@ -37,6 +37,12 @@ public class EtlapDB {
         stmt.setString(4, kategoria);
         return stmt.executeUpdate();
     }
+    public int kategoriaHizzaadas(String nev) throws SQLException {
+        String sql = "INSERT INTO kategoriak(nev) VALUES (?)";
+        PreparedStatement stmt = conn.prepareStatement(sql);
+        stmt.setString(1, nev);
+        return stmt.executeUpdate();
+    }
 
     public boolean etelTorlese(int id) throws SQLException {
         String sql = "DELETE FROM etlap WHERE id = ?";
@@ -48,10 +54,10 @@ public class EtlapDB {
     public List<String> getKategoriak() throws SQLException{
         List<String> kategoriak=new ArrayList<>();
         Statement stmt = conn.createStatement();
-        String sql = "SELECT kategoria FROM etlap GROUP BY kategoria;";
+        String sql = "SELECT nev FROM kategoriak";
         ResultSet result = stmt.executeQuery(sql);
         while (result.next()) {
-            String kategoria = result.getString("kategoria");
+            String kategoria = result.getString("nev");
             kategoriak.add(kategoria);
         }
         return kategoriak;

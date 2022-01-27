@@ -37,18 +37,15 @@ public class MainController extends Controller{
         colNev.setCellValueFactory(new PropertyValueFactory<>("nev"));
         colKategoria.setCellValueFactory(new PropertyValueFactory<>("kategoria"));
         colAr.setCellValueFactory(new PropertyValueFactory<>("ar"));
+        kategoriaFeltolt();
         try {
             db = new EtlapDB();
             etelListaFeltolt();
-        } catch (SQLException e) {
-            hibaKiir(e);
-        }
-        try {
             for (String k:db.getKategoriak()){
                 System.out.println(k);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            hibaKiir(e);
         }
     }
     @FXML
@@ -102,6 +99,14 @@ public class MainController extends Controller{
     }
     @FXML
     public void onKategoriaHozzaadButtonClick(ActionEvent actionEvent) {
+        try {
+            Controller hozzadas = ujAblak("kategoria-hozzaad-view.fxml", "Kategória hozzáadása",
+                    320, 400);
+            hozzadas.getStage().setOnCloseRequest(event -> kategoriaFeltolt());
+            hozzadas.getStage().show();
+        } catch (Exception e) {
+            hibaKiir(e);
+        }
     }
     @FXML
     public void onKategoriaTorlesButtonClick(ActionEvent actionEvent) {
@@ -115,6 +120,21 @@ public class MainController extends Controller{
             }
         } catch (SQLException e) {
             hibaKiir(e);
+        }
+    }
+    public void kategoriaFeltolt(){
+
+        try {
+            db=new EtlapDB();
+            for (String k :db.getKategoriak()){
+                if(!kategoriaList.getItems().contains(k)){
+                    kategoriaList.getItems().add(k);
+                }
+
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
     @FXML

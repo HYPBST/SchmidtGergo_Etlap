@@ -22,15 +22,44 @@ public class EtlapHozzaadController extends Controller {
     private EtlapDB db;
 
     public void initialize() {
-        sout();
+        kategoriaFeltolt();
     }
     @FXML
     public void onHozzaadButtonClick(ActionEvent actionEvent) {
-    }
-    public void sout(){
+        String nev=nevInput.getText();
+        String leiras=leirasInput.getText();
+        String kategoria=kategoriaInput.getSelectionModel().getSelectedItem().toString();
+        int ar=(Integer) arInput.getValue();
+        if (nev.isEmpty()){
+            alert("Név megadása kötelező");
+            return;
+        }
+        if (kategoria.isEmpty()){
+            alert("Kategória megadása kötelező");
+            return;
+        }
+        if (leiras.isEmpty()){
+            alert("Leírás megadása kötelező");
+            return;
+        }
+        int siker = 0;
         try {
+            siker = db.etelHozzaadasa(nev, leiras, ar, kategoria);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        if (siker == 1){
+            alert("Étel hozzáadása sikeres");
+        } else {
+            alert("Étel hozzáadása sikeretelen");
+        }
+    }
+    @FXML
+    public void kategoriaFeltolt(){
+        try {
+            db=new EtlapDB();
             for (String k:db.getKategoriak()){
-                System.out.println(k);
+                kategoriaInput.getItems().add(k);
             }
         } catch (SQLException e) {
             e.printStackTrace();
