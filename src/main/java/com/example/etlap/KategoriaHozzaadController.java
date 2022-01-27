@@ -16,7 +16,8 @@ public class KategoriaHozzaadController extends Controller{
             try {
                 db=new EtlapDB();
                 if (!db.getKategoriak().contains(kategoriaNevInput.getText())) {
-                    db.kategoriaHizzaadas(kategoriaNevInput.getText().toLowerCase());
+                    db.kategoriaHozzaadas(kategoriaNevInput.getText().toLowerCase());
+                    alert("A kategória hozzáadása sikeres volt");
                 }else {
                     alert("A kategóriák már tartalmazza ezt a kategóriát.");
                 }

@@ -58,8 +58,8 @@ public class EtlapHozzaadController extends Controller {
     public void kategoriaFeltolt(){
         try {
             db=new EtlapDB();
-            for (String k:db.getKategoriak()){
-                kategoriaInput.getItems().add(k);
+            for (Kategoria k:db.getKategoriak()){
+                kategoriaInput.getItems().add(k.getNev());
             }
         } catch (SQLException e) {
             e.printStackTrace();

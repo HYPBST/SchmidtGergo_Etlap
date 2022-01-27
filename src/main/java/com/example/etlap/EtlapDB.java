@@ -37,7 +37,7 @@ public class EtlapDB {
         stmt.setString(4, kategoria);
         return stmt.executeUpdate();
     }
-    public int kategoriaHizzaadas(String nev) throws SQLException {
+    public int kategoriaHozzaadas(String nev) throws SQLException {
         String sql = "INSERT INTO kategoriak(nev) VALUES (?)";
         PreparedStatement stmt = conn.prepareStatement(sql);
         stmt.setString(1, nev);
@@ -51,13 +51,20 @@ public class EtlapDB {
         int erintettSorok = stmt.executeUpdate();
         return erintettSorok == 1;
     }
-    public List<String> getKategoriak() throws SQLException{
-        List<String> kategoriak=new ArrayList<>();
+    public boolean kategoriaTorles(int id) throws  SQLException{
+        String sql = "DELETE FROM kategoriak WHERE id = ?";
+        PreparedStatement stmt = conn.prepareStatement(sql);
+        stmt.setInt(1, id);
+        int erintettSorok = stmt.executeUpdate();
+        return erintettSorok == 1;
+    }
+    public List<Kategoria> getKategoriak() throws SQLException{
+        List<Kategoria> kategoriak=new ArrayList<>();
         Statement stmt = conn.createStatement();
-        String sql = "SELECT nev FROM kategoriak";
+        String sql = "SELECT * FROM kategoriak";
         ResultSet result = stmt.executeQuery(sql);
         while (result.next()) {
-            String kategoria = result.getString("nev");
+            Kategoria kategoria = new Kategoria(result.getInt("id"), result.getString("nev") );
             kategoriak.add(kategoria);
         }
         return kategoriak;

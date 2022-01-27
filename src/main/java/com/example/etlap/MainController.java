@@ -16,7 +16,7 @@ import java.util.TimerTask;
 
 public class MainController extends Controller{
     @FXML
-    public ListView kategoriaList;
+    public TableView<Kategoria>  kategoriaList;
     @FXML
     public TextField txtLeiras;
     @FXML
@@ -31,18 +31,22 @@ public class MainController extends Controller{
     public Spinner ftEmelesInput;
     @FXML
     public Spinner szazalekEmelesInput;
+    public TableColumn colKategoriaNev;
     private EtlapDB db;
+
 
     public void initialize(){
         colNev.setCellValueFactory(new PropertyValueFactory<>("nev"));
         colKategoria.setCellValueFactory(new PropertyValueFactory<>("kategoria"));
         colAr.setCellValueFactory(new PropertyValueFactory<>("ar"));
-        kategoriaFeltolt();
+        colKategoriaNev.setCellValueFactory(new PropertyValueFactory<>("nev"));
+
         try {
             db = new EtlapDB();
+            kategoriaFeltolt();
             etelListaFeltolt();
-            for (String k:db.getKategoriak()){
-                System.out.println(k);
+            for (Kategoria k:db.getKategoriak()){
+                System.out.println(k.getNev());
             }
         } catch (SQLException e) {
             hibaKiir(e);
@@ -67,9 +71,7 @@ public class MainController extends Controller{
         if (etlapTable.getSelectionModel().getSelectedIndex()==-1){
             List<Etel> etelList = db.getEtelek();
             for(Etel etel: etelList){
-                System.out.println(etel.getAr());
                 etel.setArSzazalek((int) szazalekEmelesInput.getValue());
-                System.out.println(etel.getAr());
                 db.etelModositasa(etel);
             }
             initialize();
@@ -110,6 +112,19 @@ public class MainController extends Controller{
     }
     @FXML
     public void onKategoriaTorlesButtonClick(ActionEvent actionEvent) {
+        if(kategoriaList.getSelectionModel().getSelectedIndex()==-1){
+            alert("Válasszon ki egy elemet a törléshez");
+        }else {
+            try {
+                db=new EtlapDB();
+                db.kategoriaTorles(kategoriaList.getSelectionModel().getSelectedItem().getId());
+                alert("A kategória törlése sikeres volt!");
+                kategoriaFeltolt();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+        }
     }
     private void etelListaFeltolt(){
         try {
@@ -126,9 +141,11 @@ public class MainController extends Controller{
 
         try {
             db=new EtlapDB();
-            for (String k :db.getKategoriak()){
+            kategoriaList.getItems().clear();
+            for (Kategoria k :db.getKategoriak()){
                 if(!kategoriaList.getItems().contains(k)){
                     kategoriaList.getItems().add(k);
+                    colKategoriaNev.setCellValueFactory(k.getNev());
                 }
 
             }

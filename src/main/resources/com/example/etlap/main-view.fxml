@@ -75,7 +75,11 @@
                                 <Button mnemonicParsing="false" onAction="#onKategoriaTorlesButtonClick" prefWidth="100.0" text="Törlés" />
                             </children>
                         </HBox>
-                        <ListView fx:id="kategoriaList" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
+                        <TableView fx:id="kategoriaList" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" >
+                        <columns>
+                            <TableColumn fx:id="colKategoriaNev" maxWidth="500.0" minWidth="200.0" prefWidth="500.0" text="Kategóriák" />
+                        </columns>
+                        </TableView>
                     </children>
                 </VBox>
             </content>
